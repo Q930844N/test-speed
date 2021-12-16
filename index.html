@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="mobile-web-app-capable" content="no">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+
+  <!-- Bootstrap CSS -->
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="css/theme.min.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <link rel="stylesheet" href="css/jquery.countdown.css">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type='text/javascript' src='js/jquery-11.0.min.js'></script>
+
+  <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.countdown.js"></script>
+
+  <title>Speed Round</title>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .move-up {
+      top: -100px;
+      transition-property: all;
+      transition-duration: 1s;
+      transition-timing-function: cubic-bezier(0, 1, 1, 1);
+    }
+
+    .move-down {
+      top: 0px;
+      transition-property: all;
+      transition-duration: .9s;
+      transition-timing-function: cubic-bezier(0, 1, 0.9, 1);
+    }
+
+    @media (max-width: 767px) {
+      #ptest {
+        width: 3px !important;
+      }
+    }
+
+    @media (max-width: 575px) {
+      #ptest {
+        width: 2px !important;
+      }
+    }
+
+    @media (max-width: 320px) {
+      #ptest {
+        width: 1px !important;
+      }
+    }
+
+    label {
+      color: #ffffff;
+    }
+  </style>
+  <script type="text/javascript">
+
+    if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function (searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
+
+    var show_bonus = false;
+    var contentgroupname = "";
+    var localvar = "";
+    var mainheaderID = "header_img";
+    var mainmobileheaderID = "header_img";
+
+    var event_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("event_id").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    var activity_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("activity_id").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+
+    if(event_id == "")
+      event_id = 2;
+
+    if(activity_id == "")
+      activity_id = 2;
+
+    var login = 0;
+    var user_id = '';
+    var token = '';
+    var VirtuosoDemoNewLoginPortalLocalData = window.localStorage.getItem("VirtuosoDemoNewLoginPortalLocalData");
+     //var VirtuosoDemoNewLoginPortalLocalData ='{"user_id":"Test20","access_code":"","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiVGVzdDIwIn0.iWdWd6nts3PT50yjiU_GCgixl4C0wvduzdqZ0bta6Zo","ac":[],"content_group":"Build","events_data":[{"id":"23","name":"Production Demo","template_id":"21","content_path":"/content/demo/Production_Demo/","template_path":"/content/demo/templates/Virtuoso_Demo/"}],"current_event_data":{"id":"23","name":"Production Demo","template_id":"21","content_path":"/content/demo/Production_Demo/","template_path":"/content/demo/templates/Virtuoso_Demo/"},"user_info":[{"id":"25794","user_id":"Test20","login":"Test20","first_name":"Jillian","last_name":"Lane","email":"jillian.lane@mc3.com","title":"Sales Coordinator","location":"","business_unit":"MC3","area":"","region":"Central","territory":"","hierarchy":"","certification_role":"","report":"0","role":"267-689-7839","event_id":"2","content_group_id":"Build","group_id1":"","group_id2":"2","group_id3":"","as_f":"0","as_p":"0"}],"portal_bg_color":"","portal_return_btn_color":"","is_sso_login":0,"images":{"header":{"desktop":"https://demo.virtuoso.mc3.com/content/demo/Production_Demo/content/Competitive_Activities_Desktop.png","mobile":"https://demo.virtuoso.mc3.com/content/demo/Production_Demo/content/Competitive_Activities_Mobile.png","top":{"desktop":"https://demo.virtuoso.mc3.com/content/demo/Production_Demo/content/Header_Desktop.png","mobile":"https://demo.virtuoso.mc3.com/content/demo/Production_Demo/content/Header_Mobile.png"}},"banner":{"desktop":"","mobile":"","top":{"desktop":"","mobile":""}},"portal_bg_img":"Backround.png"},"menus":{"bread_crumb":["Menu21"],"bread_crumb_name":[""],"bread_crumb_weblink":[],"bread_crumb_name_weblink":[]},"portal_bg_color_current":"#ffffff","portal_return_btn_color_current":"#000000"}';
+
+    if (VirtuosoDemoNewLoginPortalLocalData != null && VirtuosoDemoNewLoginPortalLocalData != '') {
+      var localdata = JSON.parse(VirtuosoDemoNewLoginPortalLocalData);
+
+      user_id = localdata.user_id;
+      token = localdata.token;
+      localvar = "_" + event_id + "_" + activity_id + "_" + user_id;
+    }
+    // if (user_id == null || user_id == "") {
+    //     window.location.href="/portal/";
+    // }
+
+  </script>
+</head>
+
+
+<body>
+
+
+  <nav id="navbar" class="navbar navbar-expand-xl navbar-dark navbar-togglable  fixed-top" style="display: none;">
+  </nav>
+
+  <img id="header_img" src="" class="img-fluid mainheader" alt="">
+  <div class="hdreset"></div>
+  <div class="col-md-12 col-lg-12 justify-content-center info-side">
+    <div class="container count-box">
+
+      <div class="counts score">
+        <label>SCORE</label><br/>
+        <span class="current-score">0</span>
+      </div>
+      <div class="counts justify-content-center highscore">
+            <label>PERSONAL HIGH SCORE</label><br/>
+            <span class="high-score"></span>
+       </div>
+      <div class="counts time">
+        <label>TIME REMAINING</label><br/>
+        <span class="counter" id="counter">2:00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 col-lg-12 justify-content-left leaderboard desktop">
+  </div>
+  <div class="col-md-12 col-lg-12 justify-content-left leaderboard mobile">
+  </div>
+
+
+  <section class="section section-full section-top instruction-text">
+
+    <div class="container">
+      <div class="row justify-content-left">
+
+
+        <div class="col-md-12 col-lg-12">
+
+          <h2 id="activity_inst_title">ACTIVITY INSTRUCTIONS</h2>
+          <div id="activity_inst_text">
+            <ul><li>Test your knowledge of the VBU</li><li>2 minutes to answer questions</li><li>100 points for each correct response</li><li>Accuracy bonus up to 500 points</li><li>Percent of correct responses determines the percent of accuracy bonus</li><li>Total score automatically added to the competition</li></ul><div class="textstart">To begin, touch the <b>START</b> button in the lower right corner of the interface.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section section-full congo-side"
+    style="padding-top: 0px !important;  visibility: visible;overflow: hidden;padding-bottom: 0px !important;">
+
+    <div class="container">
+      <div class="justify-content-left">
+        <div class="col-md-12 col-lg-12 iefix">
+          <h2>CONGRATULATIONS!</h2>
+          <label>YOU'VE EARNED</label><br />
+          <p class="total-score"></p>
+          <label>CORRECT ANSWERS</label><br />
+          <p class="correct-answers"></p>
+          <label>BONUS POINTS</label>
+          <p class="correct-points" style=""></p>
+
+          <!--p class="correct-percent"></p-->
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-full section-top  question-side">
+    <div class="question_answer">
+      <h3 class="question"></h3>
+      <div class="answers"></div>
+    </div>
+
+  </section>
+
+  <footer class="support-footer">
+
+    <div class="container">
+      <div class="row justify-content-right">
+        <div class="col-md-12 col-lg-12 iefix">
+
+          <div class="result"></div>
+          <a class="next_btn_st disabled">NEXT QUESTION</a>
+
+          <a class="start_btn" id="start_btn">START</a>
+
+          <a class="start_btn" id="again_btn">PLAY AGAIN</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+
+  <script src="js/theme.min.js"></script>
+  <p style="display: none; width: 4px;" id="ptest">test</p>
+
+</body>
+<script src="js/activities.js"></script>
+<!-- <script type="text/javascript" src="/content/bayer/BOLD_Training_Portal/data/activities.js"></script> -->
+<script src="js/fastclick.js"></script>
+<script src="js/activity_313_offline.js"></script>
+
+<script>
+
+  function iOS_version() {
+      if(navigator.userAgent.match(/ipad|iphone|ipod/i)){ //if the current device is an iDevice
+      var ios_info ={};
+      ios_info.User_Agent=navigator.userAgent;
+      ios_info.As_Reported=(navigator.userAgent).match(/OS (\d)?\d_\d(_\d)?/i)[0];
+      ios_info.Major_Release=(navigator.userAgent).match(/OS (\d)?\d_\d(_\d)?/i)[0].split('_')[0];
+      ios_info.Full_Release=(navigator.userAgent).match(/OS (\d)?\d_\d(_\d)?/i)[0].replace(/_/g,".");
+      ios_info.Major_Release_Numeric=+(navigator.userAgent).match(/OS (\d)?\d_\d(_\d)?/i)[0].split('_')[0].replace("OS ","");
+      ios_info.Full_Release_Numeric=+(navigator.userAgent).match(/OS (\d)?\d_\d(_\d)?/i)[0].replace("_",".").replace("_","").replace("OS ","");   //converts versions like 4.3.3 to numeric value 4.33 for ease of numeric comparisons
+      return(ios_info);
+    }
+  }
+
+  var iOS=iOS_version();
+  var head  = document.getElementsByTagName('head')[0];
+  var link  = document.createElement('link');
+  link.id   = "abcd";
+  link.rel  = 'stylesheet';
+  link.type = 'text/css';
+  if($(window).width() < 767){
+    if(iOS.Major_Release_Numeric > 14){
+
+      link.href = 'css/ios15.css';
+    }
+    else{
+      link.href = 'css/otherios.css';
+    }
+  }
+  else{
+      link.href = 'css/otherios.css';
+  }
+
+  link.media = 'all';
+  head.appendChild(link);
+
+  if ($(window).width() < 767) {
+if(iOS.Major_Release_Numeric > 14){
+
+
+    var windowheight = $(window).height();
+
+    let headerHeightAndScroeHeight = 150;
+    let footerHeight = 50;
+
+    var finalHeight = parseInt(windowheight) - parseInt(headerHeightAndScroeHeight) - parseInt(footerHeight);
+
+    $(".instruction-text").css({'min-height': finalHeight+"px","float":"left"});
+    $(".question-side").css({'max-height': finalHeight+"px","float":"left","overflow":"auto"});
+
+  }
+}
+
+</script>
+<script src="js/app.js"></script>
+</html>

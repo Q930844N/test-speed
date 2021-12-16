@@ -1,0 +1,15 @@
+@media (min-width: 320px) and (max-width: 767px)
+{
+    body{background: #ffffff !important;min-width: 320px;top: 25px;overflow: scroll;}
+    .hdreset
+    {
+        position: absolute;
+        width: 36px;
+        height: 46px;
+        top: 15px;
+        left: 7%;
+    }
+    .counts{
+        line-height: 17px;
+    }
+}

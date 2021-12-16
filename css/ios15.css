@@ -1,0 +1,40 @@
+@media (min-width: 320px) and (max-width: 767px) 
+{
+
+    body{background: #ffffff !important;min-width: 320px;top: 23px;webkit-overflow-scrolling: touch;}
+   
+    .hdreset
+    {
+        position: absolute;
+        width: 36px;
+        height: 46px;
+        top: 15px;
+        left: 7%;
+    }
+    .counts{
+        line-height: 17px;
+    }
+    .question-side{
+        padding-right: 15px;
+    }
+    /* .instruction-text{
+        max-height: calc(100% - 150px);
+        float: left;
+        padding-right: 15px;
+    } */
+    /* .iosfix{
+        max-height: calc(100% - 150px);
+        float: left;
+        overflow: auto;
+        width:100%;
+        padding-right: 0px;
+    } */
+    .support-footer{
+        bottom: 0px;
+        /* padding-bottom: 10px; */
+        float: left;
+        /* position: relative; */
+        width: 100%;
+        transform: translateY(-0.5px);
+    }
+}
